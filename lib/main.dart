@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
   // }
 
 
-  bool isChecked = false;
+  bool check = false;
 
   @override
   Widget build(BuildContext context) {
@@ -128,26 +128,29 @@ class _MyAppState extends State<MyApp> {
                             );
                           });
                     },
-                    trailing: Row(mainAxisSize: MainAxisSize.min, children: [
-                      Checkbox(
-                        activeColor: Colors.black,
-                        value: isChecked,
-                        onChanged: (bool){
-
-                        },
+                  trailing: Row(mainAxisSize: MainAxisSize.min, children: [
+                    Checkbox(
+                      value: check,
+                      // checkColor: Colors.white,
+                      activeColor: Colors.green,
+                      onChanged: (value){
+                        setState(() {
+                          check = value!;
+                        });
+                      },
+                    ),
+                    IconButton(
+                      icon: Icon(
+                        Icons.delete,
+                        color: Colors.red,
                       ),
-                      IconButton(
-                        icon: Icon(Icons.delete),
-                        onPressed: () {
-                          setState(() {
-                            todoList.removeAt(index);
-                          });
-                        },
-                        color: Theme
-                            .of(context)
-                            .errorColor,
-                      ),
-                    ])
+                      onPressed: () {
+                        setState(() {
+                          todoList.removeAt(index);
+                        });
+                      },
+                    ),
+                  ]),
                 ),
             ),
           );
